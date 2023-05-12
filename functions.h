@@ -32,9 +32,7 @@ void AbrirMenu(){
 }
 
 int AdicionarUsuario(){
-    int id, vacina, validacao, encontrado = 0;;
-    char nome[100], email[100], sexo[100], endereco[100];
-    double altura;
+    int validacao, encontrado = 0;;
 
     if (numUsuarios >= MAX_USUARIOS){
         printf("Numero de usuarios alcançou o limite D:\n");
