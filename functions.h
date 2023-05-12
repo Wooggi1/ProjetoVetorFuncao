@@ -14,9 +14,6 @@ char sexo[MAX_USUARIOS][10];
 char endereco[MAX_USUARIOS][100];
 double altura[MAX_USUARIOS];
 int vacina[MAX_USUARIOS];
-int users[MAX_USUARIOS][7];
-int usersBackup[MAX_USUARIOS][7];
-
 
 void AbrirMenu(){
 
@@ -45,7 +42,7 @@ int AdicionarUsuario(){
 
         for(int i = 0; i < numUsuarios; i++)
         {
-            if(users[i][1] == id[num]){
+            if(id[i] == id[numUsuarios]){
                 printf("Usuario ja existe\n");
                 id[numUsuarios] = 00000;
                 validacao = 1;
@@ -110,13 +107,6 @@ int AdicionarUsuario(){
             scanf("%d", &vacina[numUsuarios]);
     }
 
-    users[numUsuarios][1] = id[numUsuarios];
-    strcpy(users[numUsuarios][2], nomeCompleto[numUsuarios]);
-    strcpy(users[numUsuarios][3], email[numUsuarios]);
-    strcpy(users[numUsuarios][4], sexo[numUsuarios]);
-    strcpy(users[numUsuarios][5], endereco[numUsuarios]);
-    users[numUsuarios][7] = altura[numUsuarios];
-    users[numUsuarios][8] = vacina[numUsuarios];
     numUsuarios++;
 
     return 0;
@@ -124,38 +114,38 @@ int AdicionarUsuario(){
 
 int EditarUsuario(){
     int validacao = 1;
-    char email[100], sexo[10];
+    char emailTemp[100], sexoTemp[10];
 
     printf("Digite o email do usuario: ");
-    scanf(" %[^\n]", email);
+    scanf(" %[^\n]", emailTemp);
 
     for(int i = 0; i < numUsuarios + 1; i++){
-        if(strcmp(users[i][3], email) == 0){
+        if(strcmp(email[i], emailTemp) == 0){
 
-            printf("id: %d\n", users[i][1]);
-            printf("nome: %s\n", users[i][2]);
-            printf("sexo: %s\n", users[i][4]);
-            printf("endereco: %s\n", users[i][5]);
-            printf("altura: %.2lf\n", users[i][6]);
-            printf("status de vacinacao: %d\n", users[i][7]);
+            printf("id: %d\n", id[i]);
+            printf("nome: %s\n", nomeCompleto[i]);
+            printf("sexo: %s\n", sexo[i]);
+            printf("endereco: %s\n", endereco[i]);
+            printf("altura: %.2lf\n", altura[i]);
+            printf("status de vacinacao: %d\n", vacina[i]);
 
             printf("Digite seu nome completo: ");
-            scanf(" %[^\n]", users[i][2]);
+            scanf(" %[^\n]", nomeCompleto[i]);
 
             printf("Digite seu sexo(Masculino/Feminino/Indefinido): ");
-            scanf("%s", sexo);
-            sexo[0] = toupper(sexo[0]);
-            users[i][4] = sexo;
+            scanf("%s", sexoTemp);
+            sexoTemp[0] = toupper(sexoTemp[0]);
+            strcpy(sexo[i],sexoTemp);
 
             while(!(strcmp(sexo, "Masculino") == 0 || strcmp(sexo, "Feminino") == 0 || strcmp(sexo, "Indefinido") == 0)){
                 printf("Sexo invalido tente novamente: ");
-                scanf("%s", sexo);
-                sexo[0] = toupper(sexo[0]);
-                users[i][4] = sexo;
+                scanf("%s", sexoTemp);
+                sexoTemp[0] = toupper(sexoTemp[0]);
+                strcpy(sexo[i],sexoTemp);
             }
 
             printf("Digite seu endereco: ");
-            scanf(" %[^\n]", users[i][5]);
+            scanf(" %[^\n]", endereco[i]);
 
             printf("Digite sua altura: ");
             scanf("%lf", &altura[i]);
@@ -175,17 +165,17 @@ int EditarUsuario(){
                 scanf("%d", &vacina[i]);
             }
 
-            printf("novo nome: %s\n", users[i][2]);
-            printf("novo sexo: %s\n", users[i][4]);
-            printf("novo endereco: %s\n", users[i][5]);
-            printf("nova altura: %.2lf\n", users[i][6]);
-            printf("novo status de vacinacao: %d\n", users[i][7]);
+            printf("novo nome: %s\n", nomeCompleto[i]);
+            printf("novo sexo: %s\n", sexo[i]);
+            printf("novo endereco: %s\n", endereco[i]);
+            printf("nova altura: %.2lf\n", altura[i]);
+            printf("novo status de vacinacao: %d\n", vacina[i]);
 
             return 0;
         }
     }
     printf("Usuario nao encontrado.\n");
-    return 0;
+    return -1;
 }
 /*
 int ExcluirUsuario(){
