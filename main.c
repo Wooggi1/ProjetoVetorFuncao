@@ -20,7 +20,7 @@ int main() {
         case '2':
             EditarUsuario();
             break;
-        case '3':
+        /*case '3':
             ExcluirUsuario();
             break;
         case '4':
@@ -36,7 +36,7 @@ int main() {
             RestaurarDados();
             break;
         case '0':
-            break;
+            break;*/
         default:
             printf("Opcao invalida\n");
             break;
