@@ -245,22 +245,22 @@ int ExcluirUsuario(){
     printf("Usuario nao encontrado\n");
     return -1;
 }
-/*
+
 int BuscarPorEmail(){
     char email[100];
 
     printf("Digite o email do usuario: ");
     scanf(" %[^\n]", email);
 
-    for(int i = 0; i < numUsuarios; i++){
-        if(strcmp(users[i].email, email) == 0){
+    for(int i = 0; i < numUsuarios + 1; i++){
+        if(strcmp(globalEmail[i], email) == 0){
 
-            printf("nome: %s\n", users[i].nomeCompleto);
-            printf("email: %s\n", users[i].email);
-            printf("sexo: %s\n", users[i].sexo);
-            printf("endereco: %s\n", users[i].endereco);
-            printf("altura: %.2lf\n", users[i].altura);
-            printf("status de vacinacao: %d\n", users[i].vacina);
+            printf("id: %d\n", globalId[i]);
+            printf("nome: %s\n", globalNomeCompleto[i]);
+            printf("sexo: %s\n", globalSexo[i]);
+            printf("endereco: %s\n", globalEndereco[i]);
+            printf("altura: %.2lf\n", globalAltura[i]);
+            printf("status de vacinacao: %d\n", globalVacina[i]);
 
             return 0;
         }
@@ -270,7 +270,7 @@ int BuscarPorEmail(){
         }
     }
 }
-
+/*
 int ImprimirUsuarios(){
     for(int i = 0; i < numUsuarios; i++){
         printf("\n\n----------USUARIO %d----------\n", i+1);

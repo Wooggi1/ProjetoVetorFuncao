@@ -23,10 +23,10 @@ int main() {
         case '3':
             ExcluirUsuario();
             break;
-        /*case '4':
+        case '4':
             BuscarPorEmail();
             break;
-        case '5':
+        /*case '5':
             ImprimirUsuarios();
             break;
         case '6':
