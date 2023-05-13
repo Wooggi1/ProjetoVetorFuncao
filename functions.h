@@ -108,6 +108,7 @@ int AdicionarUsuario(){
             printf("Tente novamente: ");
             scanf("%d", &vacina);
     }
+
     globalId[numUsuarios] = id;
     strcpy(globalNomeCompleto[numUsuarios], nome);
     strcpy(globalEmail[numUsuarios], email);
@@ -119,65 +120,71 @@ int AdicionarUsuario(){
 
     return 0;
 }
-/*
+
 int EditarUsuario(){
-    int validacao = 1;
-    char emailTemp[100], sexoTemp[10];
+    int id, vacina, validacao, encontrado = 0;
+    char nome[100], email[100], sexo[10], endereco[100];
+    double altura;
 
     printf("Digite o email do usuario: ");
-    scanf(" %[^\n]", emailTemp);
+    scanf(" %[^\n]", email);
 
     for(int i = 0; i < numUsuarios + 1; i++){
-        if(strcmp(email[i], emailTemp) == 0){
+        if(strcmp(globalEmail[i], email) == 0){
 
-            printf("id: %d\n", id[i]);
-            printf("nome: %s\n", nomeCompleto[i]);
-            printf("sexo: %s\n", sexo[i]);
-            printf("endereco: %s\n", endereco[i]);
-            printf("altura: %.2lf\n", altura[i]);
-            printf("status de vacinacao: %d\n", vacina[i]);
-
+            printf("id: %d\n", globalId[i]);
+            printf("nome: %s\n", globalNomeCompleto[i]);
+            printf("sexo: %s\n", globalSexo[i]);
+            printf("endereco: %s\n", globalEndereco[i]);
+            printf("altura: %.2lf\n", globalAltura[i]);
+            printf("status de vacinacao: %d\n", globalVacina[i]);
+            
             printf("Digite seu nome completo: ");
-            scanf(" %[^\n]", nomeCompleto[i]);
+            scanf(" %[^\n]", nome);
 
             printf("Digite seu sexo(Masculino/Feminino/Indefinido): ");
-            scanf("%s", sexoTemp);
-            sexoTemp[0] = toupper(sexoTemp[0]);
-            strcpy(sexo[i],sexoTemp);
+            scanf(" %[^\n]", sexo);
+            sexo[0] = toupper(sexo[0]);
 
             while(!(strcmp(sexo, "Masculino") == 0 || strcmp(sexo, "Feminino") == 0 || strcmp(sexo, "Indefinido") == 0)){
                 printf("Sexo invalido tente novamente: ");
-                scanf("%s", sexoTemp);
-                sexoTemp[0] = toupper(sexoTemp[0]);
-                strcpy(sexo[i],sexoTemp);
+                scanf(" %[^\n]", sexo);
+                sexo[0] = toupper(sexo[0]);
             }
 
             printf("Digite seu endereco: ");
-            scanf(" %[^\n]", endereco[i]);
+            scanf(" %[^\n]", endereco);
 
             printf("Digite sua altura: ");
-            scanf("%lf", &altura[i]);
+            scanf("%lf", &altura);
 
-            while(altura[i] > 2 || altura[i] < 1){
+            while(altura > 2 || altura < 1){
                 printf("Altura invalida, lembre-se a medida esta em metros\n");
                 printf("Tente novamente: ");
-                scanf("%lf", &altura[i]);
+                scanf("%lf", &altura);
             }
 
             printf("Digite o estado de sua vacinacao (1 = Vacinado/ 0 = Nao vacinado): ");
-            scanf("%d", &vacina[i]);
+            scanf("%d", &vacina);
     
-            while(!(vacina[i] == 1 || vacina[i] == 0)){
+            while(!(vacina == 1 || vacina == 0)){
                 printf("So sao aceitos 1 e 0 como valor\n");
                 printf("Tente novamente: ");
-                scanf("%d", &vacina[i]);
+                scanf("%d", &vacina);
             }
 
-            printf("novo nome: %s\n", nomeCompleto[i]);
-            printf("novo sexo: %s\n", sexo[i]);
-            printf("novo endereco: %s\n", endereco[i]);
-            printf("nova altura: %.2lf\n", altura[i]);
-            printf("novo status de vacinacao: %d\n", vacina[i]);
+            strcpy(globalNomeCompleto[i], nome);
+            strcpy(globalEmail[i], email);
+            strcpy(globalSexo[i], sexo);
+            strcpy(globalEndereco[i], endereco);
+            globalAltura[i] = altura;
+            globalVacina[i] = vacina;
+
+            printf("novo nome: %s\n", globalNomeCompleto[i]);
+            printf("novo sexo: %s\n", globalSexo[i]);
+            printf("novo endereco: %s\n", globalEndereco[i]);
+            printf("nova altura: %.2lf\n", globalAltura[i]);
+            printf("novo status de vacinacao: %d\n", globalVacina[i]);
 
             return 0;
         }
@@ -185,7 +192,7 @@ int EditarUsuario(){
     printf("Usuario nao encontrado.\n");
     return -1;
 }
-
+/*
 int ExcluirUsuario(){
     char email[100];
     int validacao = 1, certeza = 0;
