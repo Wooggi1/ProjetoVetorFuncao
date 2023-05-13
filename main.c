@@ -29,14 +29,14 @@ int main() {
         case '5':
             ImprimirUsuarios();
             break;
-        /*case '6':
+        case '6':
             BackUp();
             break;
-        case '7':
+        /*case '7':
             RestaurarDados();
-            break;
-        case '0':
             break;*/
+        case '0':
+            break;
         default:
             printf("Opcao invalida\n");
             break;

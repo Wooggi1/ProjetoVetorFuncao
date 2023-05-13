@@ -8,7 +8,7 @@
 
 int numUsuarios = 0;
 //dados do usuario
-int globalId[MAX_USUARIOS];
+int globalID[MAX_USUARIOS];
 char globalNomeCompleto[MAX_USUARIOS][100];
 char globalEmail[MAX_USUARIOS][100];
 char globalSexo[MAX_USUARIOS][10];
@@ -16,6 +16,13 @@ char globalEndereco[MAX_USUARIOS][100];
 double globalAltura[MAX_USUARIOS];
 int globalVacina[MAX_USUARIOS];
 //backup
+int backupID[MAX_USUARIOS];
+char backupNomeCompleto[MAX_USUARIOS][100];
+char backupEmail[MAX_USUARIOS][100];
+char backupSexo[MAX_USUARIOS][10];
+char backupEndereco[MAX_USUARIOS][100];
+double backupAltura[MAX_USUARIOS];
+int backupVacina[MAX_USUARIOS];
 
 void AbrirMenu(){
 
@@ -46,7 +53,7 @@ int AdicionarUsuario(){
 
         for(int i = 0; i < numUsuarios; i++)
         {
-            if(globalId[i] == id){
+            if(globalID[i] == id){
                 printf("Usuario ja existe\n");
                 id = 00000;
                 validacao = 1;
@@ -111,7 +118,7 @@ int AdicionarUsuario(){
             scanf("%d", &vacina);
     }
 
-    globalId[numUsuarios] = id;
+    globalID[numUsuarios] = id;
     strcpy(globalNomeCompleto[numUsuarios], nome);
     strcpy(globalEmail[numUsuarios], email);
     strcpy(globalSexo[numUsuarios], sexo);
@@ -134,7 +141,7 @@ int EditarUsuario(){
     for(int i = 0; i < numUsuarios + 1; i++){
         if(strcmp(globalEmail[i], email) == 0){
 
-            printf("id: %d\n", globalId[i]);
+            printf("id: %d\n", globalID[i]);
             printf("nome: %s\n", globalNomeCompleto[i]);
             printf("sexo: %s\n", globalSexo[i]);
             printf("endereco: %s\n", globalEndereco[i]);
@@ -205,7 +212,7 @@ int ExcluirUsuario(){
     for(int i = 0; i < numUsuarios; i++){
         if(strcmp(globalEmail[i], email) == 0){
 
-            printf("id: %d\n", globalId[i]);
+            printf("id: %d\n", globalID[i]);
             printf("nome: %s\n", globalNomeCompleto[i]);
             printf("sexo: %s\n", globalSexo[i]);
             printf("endereco: %s\n", globalEndereco[i]);
@@ -216,7 +223,7 @@ int ExcluirUsuario(){
             scanf("%d", &certeza);
 
             if(certeza == 1){
-                globalId[i] = 0;
+                globalID[i] = 0;
                 memset(globalEmail[i], 0, sizeof(globalEmail[i]));
                 memset(globalNomeCompleto[i], 0, sizeof(globalNomeCompleto[i]));
                 memset(globalSexo[i], 0, sizeof(globalSexo[i]));
@@ -226,7 +233,7 @@ int ExcluirUsuario(){
                 numUsuarios--;
                 
                 for (int j = i + 1; j < numUsuarios; j++){
-                    globalId[j - 1] = globalId[j];
+                    globalID[j - 1] = globalID[j];
                     strcpy(globalEmail[j - 1], globalEmail[j]);
                     strcpy(globalNomeCompleto[j - 1], globalEmail[j]);
                     strcpy(globalSexo[j - 1], globalSexo[j]);
@@ -257,7 +264,7 @@ int BuscarPorEmail(){
     for(int i = 0; i < numUsuarios + 1; i++){
         if(strcmp(globalEmail[i], email) == 0){
 
-            printf("id: %d\n", globalId[i]);
+            printf("id: %d\n", globalID[i]);
             printf("nome: %s\n", globalNomeCompleto[i]);
             printf("sexo: %s\n", globalSexo[i]);
             printf("endereco: %s\n", globalEndereco[i]);
@@ -276,7 +283,7 @@ int BuscarPorEmail(){
 int ImprimirUsuarios(){
     for(int i = 0; i < numUsuarios; i++){
         printf("\n----------USUARIO %d----------\n", i+1);
-        printf("id: %d\n", globalId[i]);
+        printf("id: %d\n", globalID[i]);
         printf("email: %s\n", globalEmail[i]);
         printf("nome: %s\n", globalNomeCompleto[i]);
         printf("sexo: %s\n", globalSexo[i]);
@@ -285,37 +292,38 @@ int ImprimirUsuarios(){
         printf("status de vacinacao: %d\n\n", globalVacina[i]);
     }
 }
-/*
+
 int BackUp(){
     int certeza;
 
-    printf("tem certeza que deseja fazer backup?\n1 - sim 2 - nao\n");
+    printf("tem certeza que deseja fazer backup?\n1 - sim 0 - nao\n");
     scanf("%d", &certeza);
 
     if(certeza == 1){
         for(int i = 0; i < numUsuarios; i++){
-            usersBackup[i].id = users[i].id;
-            strcpy(usersBackup[i].nomeCompleto, users[i].nomeCompleto);
-            strcpy(usersBackup[i].email, users[i].email);
-            strcpy(usersBackup[i].sexo, users[i].sexo);
-            strcpy(usersBackup[i].endereco, users[i].endereco);
-            usersBackup[i].altura = users[i].altura;
-            usersBackup[i].vacina = users[i].vacina;
+            backupID[i] = globalID[i];
+            strcpy(backupNomeCompleto[i], globalNomeCompleto[i]);
+            strcpy(backupEmail[i], globalEmail[i]);
+            strcpy(backupSexo[i], globalSexo[i]);
+            strcpy(backupEndereco[i], globalEndereco[i]);
+            backupAltura[i] = globalAltura[i];
+            backupVacina[i] = globalVacina[i];
         }
         
-        printf("BackUp concluido com sucesso\n");
+        printf("BackUp concluido com sucesso!\n\n");
        
         return 0;
     }
-    else if(certeza == 2){
+    else if(certeza == 0){
+        printf("Backup cancelado!\n\n");
         return 0;
     }
     else {
-        printf("Opcao invalida\n");
+        printf("Opcao invalida!\n\n");
         return -1;
     }
 }
-
+/*
 int RestaurarDados(){
     int certeza;
 
