@@ -17,10 +17,10 @@ int main() {
         case '1':
             AdicionarUsuario();
             break;
-        case '2':
+        /*case '2':
             EditarUsuario();
             break;
-        /*case '3':
+        case '3':
             ExcluirUsuario();
             break;
         case '4':
