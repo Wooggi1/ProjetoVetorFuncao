@@ -32,10 +32,11 @@ int main() {
         case '6':
             BackUp();
             break;
-        /*case '7':
+        case '7':
             RestaurarDados();
-            break;*/
+            break;
         case '0':
+            printf("--------Fechando programa--------\n");
             break;
         default:
             printf("Opcao invalida\n");
