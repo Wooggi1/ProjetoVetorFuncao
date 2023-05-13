@@ -20,10 +20,10 @@ int main() {
         case '2':
             EditarUsuario();
             break;
-        /*case '3':
+        case '3':
             ExcluirUsuario();
             break;
-        case '4':
+        /*case '4':
             BuscarPorEmail();
             break;
         case '5':
