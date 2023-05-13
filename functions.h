@@ -202,16 +202,15 @@ int EditarUsuario(){
     return -1;
 }
 
-int ExcluirUsuario(){
+int ExcluirUsuario() {
     char email[100];
-    int validacao = 1, certeza;
+    int certeza;
 
     printf("Digite o email do usuario: ");
-    scanf(" %[^\n]", email);
+    scanf("%99[^\n]", email); 
 
-    for(int i = 0; i < numUsuarios; i++){
-        if(strcmp(globalEmail[i], email) == 0){
-
+    for (int i = 0; i < numUsuarios; i++) {
+        if (strcmp(globalEmail[i], email) == 0) {
             printf("id: %d\n", globalID[i]);
             printf("nome: %s\n", globalNomeCompleto[i]);
             printf("sexo: %s\n", globalSexo[i]);
@@ -222,38 +221,39 @@ int ExcluirUsuario(){
             printf("Tem certeza que deseja excluir esse usuario?\n1 - sim 0 - nao\n");
             scanf("%d", &certeza);
 
-            if(certeza == 1){
-                globalID[i] = 0;
-                memset(globalEmail[i], 0, sizeof(globalEmail[i]));
-                memset(globalNomeCompleto[i], 0, sizeof(globalNomeCompleto[i]));
-                memset(globalSexo[i], 0, sizeof(globalSexo[i]));
-                memset(globalEndereco[i], 0, sizeof(globalEndereco[i]));
-                globalAltura[i] = 0;
-                globalVacina[i] = 0;
-                numUsuarios--;
-                
-                for (int j = i + 1; j < numUsuarios; j++){
+            if (certeza == 1) {
+                for (int j = i + 1; j < numUsuarios; j++) {
                     globalID[j - 1] = globalID[j];
                     strcpy(globalEmail[j - 1], globalEmail[j]);
-                    strcpy(globalNomeCompleto[j - 1], globalEmail[j]);
+                    strcpy(globalNomeCompleto[j - 1], globalNomeCompleto[j]);
                     strcpy(globalSexo[j - 1], globalSexo[j]);
                     strcpy(globalEndereco[j - 1], globalEndereco[j]);
                     globalAltura[j - 1] = globalAltura[j];
                     globalVacina[j - 1] = globalVacina[j];
                 }
 
+                globalID[numUsuarios - 1] = 0;
+                memset(globalEmail[numUsuarios - 1], 0, sizeof(globalEmail[numUsuarios - 1]));
+                memset(globalNomeCompleto[numUsuarios - 1], 0, sizeof(globalNomeCompleto[numUsuarios - 1]));
+                memset(globalSexo[numUsuarios - 1], 0, sizeof(globalSexo[numUsuarios - 1]));
+                memset(globalEndereco[numUsuarios - 1], 0, sizeof(globalEndereco[numUsuarios - 1]));
+                globalAltura[numUsuarios - 1] = 0;
+                globalVacina[numUsuarios - 1] = 0;
+                numUsuarios--;
+
                 printf("Usuario excluido com sucesso!\n");
                 return 0;
             }
-            else if(certeza == 0){
+            else if (certeza == 0) {
                 printf("Finalizando funcao ExcluirUsuario!\n");
                 return 0;
             }
         }
     }
     printf("Usuario nao encontrado\n");
-    return -1;
+    return -2; 
 }
+
 
 int BuscarPorEmail(){
     char email[100];
