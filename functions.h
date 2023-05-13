@@ -7,6 +7,7 @@
 #define MAX_USUARIOS 1000
 
 int numUsuarios = 0;
+//dados do usuario
 int globalId[MAX_USUARIOS];
 char globalNomeCompleto[MAX_USUARIOS][100];
 char globalEmail[MAX_USUARIOS][100];
@@ -14,6 +15,7 @@ char globalSexo[MAX_USUARIOS][10];
 char globalEndereco[MAX_USUARIOS][100];
 double globalAltura[MAX_USUARIOS];
 int globalVacina[MAX_USUARIOS];
+//backup
 
 void AbrirMenu(){
 
@@ -270,20 +272,20 @@ int BuscarPorEmail(){
         }
     }
 }
-/*
+
 int ImprimirUsuarios(){
     for(int i = 0; i < numUsuarios; i++){
-        printf("\n\n----------USUARIO %d----------\n", i+1);
-        printf("id:  %d\n", users[i].id);
-        printf("nome: %s\n", users[i].nomeCompleto);
-        printf("email: %s\n", users[i].email);
-        printf("sexo: %s\n", users[i].sexo);
-        printf("endereco: %s\n", users[i].endereco);
-        printf("altura: %.2lf\n", users[i].altura);
-        printf("status de vacinacao: %d\n", users[i].vacina);
+        printf("\n----------USUARIO %d----------\n", i+1);
+        printf("id: %d\n", globalId[i]);
+        printf("email: %s\n", globalEmail[i]);
+        printf("nome: %s\n", globalNomeCompleto[i]);
+        printf("sexo: %s\n", globalSexo[i]);
+        printf("endereco: %s\n", globalEndereco[i]);
+        printf("altura: %.2lf\n", globalAltura[i]);
+        printf("status de vacinacao: %d\n\n", globalVacina[i]);
     }
 }
-
+/*
 int BackUp(){
     int certeza;
 

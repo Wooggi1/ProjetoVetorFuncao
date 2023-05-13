@@ -26,10 +26,10 @@ int main() {
         case '4':
             BuscarPorEmail();
             break;
-        /*case '5':
+        case '5':
             ImprimirUsuarios();
             break;
-        case '6':
+        /*case '6':
             BackUp();
             break;
         case '7':
